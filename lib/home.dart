@@ -16,7 +16,6 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
