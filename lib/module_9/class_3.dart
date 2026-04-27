@@ -123,6 +123,7 @@ class Class3 extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){}, child: Icon(Icons.add),),
     );
   }
 }
