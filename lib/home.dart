@@ -10,6 +10,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
         title: Text('Flutter 16'),
         centerTitle: true,
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -171,6 +172,8 @@ class Home extends StatelessWidget {
         
           ],
         ),
+
+
       ),
     );
   }
