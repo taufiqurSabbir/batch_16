@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home.dart';
+import 'module_10/class_1.dart';
 import 'module_9/class_3.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         title: 'Flutter 16',
-      home: Class3(),
+      home: Module10Class1(),
     );
   }
 }
