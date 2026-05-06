@@ -14,6 +14,10 @@ class Class2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+
+
+
           Text('Hello world',style: TextStyle(fontSize: 25),),
 
     Align(
