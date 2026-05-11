@@ -5,6 +5,10 @@ class Module11Class1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Module-11 class-1'),
@@ -23,6 +27,7 @@ class Module11Class1 extends StatelessWidget {
               Image.asset('asset/YT.png'),
           
               TextField(
+                controller: phoneController,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   helperText: 'Phone number',
@@ -54,6 +59,7 @@ class Module11Class1 extends StatelessWidget {
               SizedBox(height: 10,),
 
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
@@ -82,6 +88,21 @@ class Module11Class1 extends StatelessWidget {
 
                 ),
               ),
+              
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange
+                    ),
+                    onPressed: (){
+
+                      print(phoneController.text);
+                      print(passwordController.text);
+
+                    }, child: Text('Submit',style: TextStyle(fontSize: 20),)),
+              )
             ],
           ),
         ),
