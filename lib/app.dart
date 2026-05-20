@@ -9,6 +9,7 @@ import 'module_11/class_2.dart';
 import 'module_11/class_3.dart';
 import 'module_11/custom_w.dart';
 import 'module_12/class_1.dart';
+import 'module_12/class_2.dart';
 import 'module_9/class_3.dart';
 
 class MyApp extends StatelessWidget {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         title: 'Flutter 16',
-      home: Module12Class1(),
+      home: Class2Module12(),
     );
   }
 }
