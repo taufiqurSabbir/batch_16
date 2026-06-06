@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_16/module_13/pages/about.dart';
 
 import 'home.dart';
 import 'module_10/class_1.dart';
@@ -12,6 +13,7 @@ import 'module_12/class_1.dart';
 import 'module_12/class_2.dart';
 import 'module_12/class_3.dart';
 import 'module_13/class_1.dart';
+import 'module_13/class_2.dart';
 import 'module_9/class_3.dart';
 
 class MyApp extends StatelessWidget {
@@ -22,7 +24,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         title: 'Flutter 16',
-      home: WidgetLifeCycle(),
+
+      initialRoute: '/Module13Class2',
+
+      routes: {
+        '/about' : (context) => about(),
+         '/WidgetLifeCycle' : (context) => WidgetLifeCycle(),
+         '/Module13Class2' : (context) => Module13Class2(),
+      },
     );
   }
 }
