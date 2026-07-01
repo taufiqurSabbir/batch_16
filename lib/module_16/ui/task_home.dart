@@ -35,6 +35,20 @@ class _TaskHomeState extends State<TaskHome> {
    taskController.clear();
   }
 
+
+  Future<void> deleteTask(int id)async {
+   await TaskDatabase.deleteTask(id);
+    await refreshTask();
+    taskController.clear();
+  }
+
+  Future<void> toggleTaskStatus(TaskModel task)async {
+    await TaskDatabase.updateTask(
+      TaskModel(title: task.title, isDone: !task.isDone, id: task.id)
+    );
+    await refreshTask();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,8 +81,11 @@ class _TaskHomeState extends State<TaskHome> {
                   final task = tasks[index];
                   return Card(
                     child: ListTile(
-                      leading: Checkbox(value: task.isDone, onChanged: (_) => {}),
-                      title: Text(task.title),
+                      leading: Checkbox(value: task.isDone, onChanged: (_) =>toggleTaskStatus(task)),
+                      title: Text(task.title, style: TextStyle(
+                        color: task.isDone ? Colors.grey : Colors.black,
+                        decoration: task.isDone ? TextDecoration.lineThrough : null
+                      ),),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -79,7 +96,9 @@ class _TaskHomeState extends State<TaskHome> {
                                 color: Colors.orange,
                               )),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                deleteTask(task.id!);
+                              },
                               icon: Icon(
                                 Icons.delete,
                                 color: Colors.red,
