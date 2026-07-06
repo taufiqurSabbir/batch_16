@@ -21,6 +21,7 @@ import 'module_14/class_1.dart';
 import 'module_14/class_2.dart';
 import 'module_14/class_3.dart';
 import 'module_16/ui/task_home.dart';
+import 'module_17/CRUD/screens/crud.dart';
 import 'module_9/class_3.dart';
 
 class MyApp extends StatelessWidget {
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
          debugShowCheckedModeBanner: false,
          title: 'Flutter 16',
 
-         initialRoute: '/TaskHome',
+         initialRoute: '/Crud',
 
          routes: {
            '/about' : (context) => about(),
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
            '/Module14Class2' : (context) => Module14Class2(),
            '/Module14Class3' : (context) => Module14Class3(),
            '/TaskHome' : (context) => TaskHome(),
+           '/Crud' : (context) => Crud(),
          },
        );
      },
