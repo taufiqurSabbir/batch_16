@@ -7,7 +7,7 @@ class ProductController {
 
   List<Data>products = [];
 
-  Future<void>getProduct() async {
+  Future getProduct() async {
     final url = Uri.parse(Urls.readProductURL);
     final response = await http.get(url);
     
@@ -62,4 +62,66 @@ class ProductController {
     }
 
   }
+
+
+
+  Future<bool>deleteProduct(String productID) async {
+    final url = Uri.parse(Urls.deleteProductURL(productID));
+    final response =await http.get(url);
+
+
+    if(response.statusCode ==200){
+      getProduct();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+
+  Future<bool>updateProduct(String ProductID, Data data) async {
+
+    final url = Uri.parse(Urls.updateProductURL(ProductID));
+    final response = await http.post(url ,
+
+        headers: {
+          'Accept' : 'application/json',
+          'Content-Type' : 'application/json',
+
+        },
+
+
+        body: jsonEncode(
+            {
+              "ProductName": data.productName,
+              "ProductCode": DateTime.now().microsecondsSinceEpoch,
+              "Img": data.img,
+              "Qty": data.qty,
+              "UnitPrice": data.unitPrice,
+              "TotalPrice": data.totalPrice
+            }
+        )
+
+
+    );
+
+
+    print(response.statusCode);
+    print(response.body);
+
+
+    if(response.statusCode == 200){
+      getProduct();
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+
+
+
 }
