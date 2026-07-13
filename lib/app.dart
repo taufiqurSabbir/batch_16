@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_16/module_13/pages/about.dart';
+import 'package:flutter_16/task_manager/screens/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'home.dart';
@@ -35,10 +36,50 @@ class MyApp extends StatelessWidget {
      splitScreenMode: true,
      builder: (_,child){
        return MaterialApp(
+         theme: ThemeData(
+           textTheme: TextTheme(
+             titleLarge: TextStyle(
+               fontSize: 28,
+               fontWeight: FontWeight.w600
+             )
+           ),
+
+
+           inputDecorationTheme: InputDecorationTheme(
+             fillColor: Colors.white,
+             filled: true,
+             hintStyle: TextStyle(
+               color: Colors.grey
+             ),
+
+             enabledBorder: OutlineInputBorder(
+               borderSide: BorderSide.none
+             ),
+
+             border: OutlineInputBorder(
+               borderSide: BorderSide.none
+             ),
+           ),
+
+
+           filledButtonTheme: FilledButtonThemeData(
+             style: FilledButton.styleFrom(
+               backgroundColor: Colors.green,
+               fixedSize: Size.fromWidth(double.maxFinite),
+               padding: EdgeInsets.symmetric(
+                 vertical: 12
+               ),
+               shape: RoundedRectangleBorder(
+                 borderRadius: BorderRadius.circular(8)
+               )
+             )
+           )
+
+         ),
          debugShowCheckedModeBanner: false,
          title: 'Flutter 16',
 
-         initialRoute: '/Crud',
+         initialRoute: '/SplashScreen',
 
          routes: {
            '/about' : (context) => about(),
@@ -51,6 +92,7 @@ class MyApp extends StatelessWidget {
            '/Module14Class3' : (context) => Module14Class3(),
            '/TaskHome' : (context) => TaskHome(),
            '/Crud' : (context) => Crud(),
+           '/SplashScreen' : (context) => SplashScreen(),
          },
        );
      },
