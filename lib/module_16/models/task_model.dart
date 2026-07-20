@@ -1,9 +1,9 @@
-class TaskModel {
+class TaskModelold {
   final int ? id;
   final String title;
   final bool isDone;
 
-  TaskModel({this.id, required this.title, required this.isDone});
+  TaskModelold({this.id, required this.title, required this.isDone});
 
   Map<String, dynamic> toMap() {
     return {
@@ -16,8 +16,8 @@ class TaskModel {
 
 
 
-  factory TaskModel.formMap(Map<String,dynamic>map){
-    return TaskModel(
+  factory TaskModelold.formMap(Map<String,dynamic>map){
+    return TaskModelold(
         id: map['id'],
         title: map['title'],
         isDone: map['isDone']==1

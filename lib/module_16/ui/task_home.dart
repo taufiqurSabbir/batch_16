@@ -10,7 +10,7 @@ class TaskHome extends StatefulWidget {
 }
 
 class _TaskHomeState extends State<TaskHome> {
-  List<TaskModel> tasks = [];
+  List<TaskModelold> tasks = [];
   TextEditingController taskController = TextEditingController();
 
   @override
@@ -30,7 +30,7 @@ class _TaskHomeState extends State<TaskHome> {
 
 
   Future<void> addTask()async {
-   await TaskDatabase.insertTask(TaskModel(title: taskController.text, isDone: false));
+   await TaskDatabase.insertTask(TaskModelold(title: taskController.text, isDone: false));
    await refreshTask();
    taskController.clear();
   }
@@ -42,9 +42,9 @@ class _TaskHomeState extends State<TaskHome> {
     taskController.clear();
   }
 
-  Future<void> toggleTaskStatus(TaskModel task)async {
+  Future<void> toggleTaskStatus(TaskModelold task)async {
     await TaskDatabase.updateTask(
-      TaskModel(title: task.title, isDone: !task.isDone, id: task.id)
+      TaskModelold(title: task.title, isDone: !task.isDone, id: task.id)
     );
     await refreshTask();
   }

@@ -18,16 +18,16 @@ class TaskDatabase {
   }
 
 
-  static Future<void> insertTask(TaskModel taskModel) async {
+  static Future<void> insertTask(TaskModelold taskModel) async {
     final db = await getDB();
     await db.insert('tasks',taskModel.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
 
   }
 
-  static Future<List<TaskModel>> getTask() async {
+  static Future<List<TaskModelold>> getTask() async {
     final db = await getDB();
     final List<Map<String,dynamic>> maps = await db.query('tasks');
-    return List.generate(maps.length, (i) => TaskModel.formMap(maps[i]));
+    return List.generate(maps.length, (i) => TaskModelold.formMap(maps[i]));
   }
 
 
@@ -37,7 +37,7 @@ class TaskDatabase {
     db.delete('tasks', where:  'id = ?', whereArgs: [id]);
   }
 
-  static Future<void>updateTask(TaskModel task) async {
+  static Future<void>updateTask(TaskModelold task) async {
     final db = await getDB();
     db.update('tasks', task.toMap(),where: 'id = ?',whereArgs: [task.id]);
   }
