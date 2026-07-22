@@ -13,11 +13,13 @@ class ScreenBG extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SvgPicture.asset(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            fit: BoxFit.cover,
-            AssetPath.backgroundSVG),
+        SafeArea(
+          child: SvgPicture.asset(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              fit: BoxFit.cover,
+              AssetPath.backgroundSVG),
+        ),
         child
       ],
     );
