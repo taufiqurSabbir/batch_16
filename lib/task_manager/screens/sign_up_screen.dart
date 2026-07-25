@@ -1,5 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_16/task_manager/data/models/api_response.dart';
+import 'package:flutter_16/task_manager/data/service/api_caller.dart';
+import 'package:flutter_16/task_manager/screens/login_screen.dart';
+import 'package:flutter_16/task_manager/utils/urls.dart';
 
 import '../widget/screen_bg.dart';
 
@@ -13,6 +17,26 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   onTapLogin(){
     Navigator.pop(context);
+  }
+
+  Future<void>signUp() async {
+    final ApiResponse response =await ApiCaller.postRequest(URL: TMUrls.SignupURL,
+    body: {
+      "email":_emailController.text,
+      "firstName":_firstNameController.text,
+      "lastName":_lastNameController.text,
+      "mobile":_mobileController.text,
+      "password":_passwordController.text
+    }
+    );
+    
+    if(response.isSuccess){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('SignUp success.....!')));
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Something wrong..!')));
+
+    }
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -123,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               FilledButton(onPressed: (){
                 if(_formKey.currentState!.validate()){
-
+                  signUp();
                 }
               }, child: Icon(Icons.arrow_circle_right_outlined)),
 
