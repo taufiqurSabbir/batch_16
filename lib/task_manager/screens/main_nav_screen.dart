@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_16/task_manager/screens/cancel_task_screen.dart';
 import 'package:flutter_16/task_manager/screens/completed_task_screen.dart';
+import 'package:flutter_16/task_manager/screens/create_task_screen.dart';
 import 'package:flutter_16/task_manager/screens/new_task_screen.dart';
 import 'package:flutter_16/task_manager/screens/progress_task_screen.dart';
 import 'package:flutter_16/task_manager/widget/screen_bg.dart';
@@ -67,6 +68,11 @@ class _MainNavScreenState extends State<MainNavScreen> {
         NavigationDestination(icon: Icon(Icons.task_alt_outlined), label: 'Competed'),
         NavigationDestination(icon: Icon(Icons.cancel_outlined), label: 'Cancel'),
       ]),
+      
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateTaskScreen()));
+
+      }, child: Icon(Icons.add),),
     );
   }
 }
