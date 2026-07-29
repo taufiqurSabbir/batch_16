@@ -16,7 +16,7 @@ class NewTaskScreen extends StatefulWidget {
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
   List<TaskStatusCountModel>taskCountList = [];
-  List<TaskModel>taskList = [];
+
 
   Future<void>getAllTaskCount() async {
     final response = await ApiCaller.getRequest(URL: TMUrls.taskCount);
@@ -40,6 +40,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
   }
 
+  List<TaskModel>taskList = [];
 
   Future<void>getAllTask() async {
     final response = await ApiCaller.getRequest(URL: TMUrls.AllTask('New'));
@@ -82,7 +83,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 90,
+            height: 100,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: taskCountList.length,
@@ -109,7 +110,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           
               itemCount:taskList.length ,
               itemBuilder: (context,index){
-            return   TaskCard(taskModel:taskList[index], cardColor: Colors.blue, refreshParent: () {  },
+            return   TaskCard(taskModel:taskList[index], cardColor: Colors.blue, refreshParent: () {
+              getAllTaskCount();
+              getAllTask();
+            },
           
             );
           }),
