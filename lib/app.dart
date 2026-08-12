@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_16/module_13/pages/about.dart';
+import 'package:flutter_16/task_manager/providers/auth_provider.dart';
+import 'package:flutter_16/task_manager/providers/task_provider.dart';
 import 'package:flutter_16/task_manager/screens/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'home.dart';
 import 'module_10/class_1.dart';
@@ -30,72 +33,78 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return ScreenUtilInit(
-     designSize: Size(360, 690),
-     minTextAdapt: true,
-     splitScreenMode: true,
-     builder: (_,child){
-       return MaterialApp(
-         theme: ThemeData(
-           textTheme: TextTheme(
-             titleLarge: TextStyle(
-               fontSize: 28,
-               fontWeight: FontWeight.w600
-             )
-           ),
-
-
-           inputDecorationTheme: InputDecorationTheme(
-             fillColor: Colors.white,
-             filled: true,
-             hintStyle: TextStyle(
-               color: Colors.grey
+   return MultiProvider(
+     providers: [
+        ChangeNotifierProvider(create: (_)=>AuthProvider()),
+        ChangeNotifierProvider(create: (_)=>TaskProvider()),
+     ],
+     child: ScreenUtilInit(
+       designSize: Size(360, 690),
+       minTextAdapt: true,
+       splitScreenMode: true,
+       builder: (_,child){
+         return MaterialApp(
+           theme: ThemeData(
+             textTheme: TextTheme(
+               titleLarge: TextStyle(
+                 fontSize: 28,
+                 fontWeight: FontWeight.w600
+               )
              ),
 
-             enabledBorder: OutlineInputBorder(
-               borderSide: BorderSide.none
-             ),
 
-             border: OutlineInputBorder(
-               borderSide: BorderSide.none
-             ),
-           ),
-
-
-           filledButtonTheme: FilledButtonThemeData(
-             style: FilledButton.styleFrom(
-               backgroundColor: Colors.green,
-               fixedSize: Size.fromWidth(double.maxFinite),
-               padding: EdgeInsets.symmetric(
-                 vertical: 12
+             inputDecorationTheme: InputDecorationTheme(
+               fillColor: Colors.white,
+               filled: true,
+               hintStyle: TextStyle(
+                 color: Colors.grey
                ),
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(8)
+
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide.none
+               ),
+
+               border: OutlineInputBorder(
+                 borderSide: BorderSide.none
+               ),
+             ),
+
+
+             filledButtonTheme: FilledButtonThemeData(
+               style: FilledButton.styleFrom(
+                 backgroundColor: Colors.green,
+                 fixedSize: Size.fromWidth(double.maxFinite),
+                 padding: EdgeInsets.symmetric(
+                   vertical: 12
+                 ),
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.circular(8)
+                 )
                )
              )
-           )
 
-         ),
-         debugShowCheckedModeBanner: false,
-         title: 'Flutter 16',
+           ),
+           debugShowCheckedModeBanner: false,
+           title: 'Flutter 16',
 
-         initialRoute: '/SplashScreen',
+           initialRoute: '/SplashScreen',
 
-         routes: {
-           '/about' : (context) => about(),
-           '/WidgetLifeCycle' : (context) => WidgetLifeCycle(),
-           '/Module13Class2' : (context) => Module13Class2(),
-           '/Module13Class3' : (context) => Module13Class3(),
-           '/BottomNav' : (context) => BottomNav(),
-           '/Todo' : (context) => Todo(),
-           '/Module14Class2' : (context) => Module14Class2(),
-           '/Module14Class3' : (context) => Module14Class3(),
-           '/TaskHome' : (context) => TaskHome(),
-           '/Crud' : (context) => Crud(),
-           '/SplashScreen' : (context) => SplashScreen(),
-         },
-       );
-     },
+           routes: {
+             '/about' : (context) => about(),
+             '/WidgetLifeCycle' : (context) => WidgetLifeCycle(),
+             '/Module13Class2' : (context) => Module13Class2(),
+             '/Module13Class3' : (context) => Module13Class3(),
+             '/BottomNav' : (context) => BottomNav(),
+             '/Todo' : (context) => Todo(),
+             '/Module14Class2' : (context) => Module14Class2(),
+             '/Module14Class3' : (context) => Module14Class3(),
+             '/TaskHome' : (context) => TaskHome(),
+             '/Crud' : (context) => Crud(),
+             '/SplashScreen' : (context) => SplashScreen(),
+           },
+         );
+       },
+     ),
    );
   }
 }

@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_16/task_manager/controller/auth_controller.dart';
 import 'package:flutter_16/task_manager/data/models/user_model.dart';
+import 'package:flutter_16/task_manager/providers/auth_provider.dart';
 import 'package:flutter_16/task_manager/screens/sign_up_screen.dart';
 import 'package:flutter_16/task_manager/widget/screen_bg.dart';
+import 'package:provider/provider.dart';
 
 import '../data/models/api_response.dart';
 import '../data/service/api_caller.dart';
@@ -31,19 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void>login() async {
-    final ApiResponse response =await ApiCaller.postRequest(URL: TMUrls.LoginURL,
-        body: {
-          "email":_emailController.text,
-          "password":_passwordController.text
-        }
-    );
+    final authProvider = Provider.of<AuthProvider>(context,listen: false);
+    
+   bool isLogin =await authProvider.login(_emailController.text, _passwordController.text);
 
-    if(response.isSuccess){
-      UserModel model = UserModel.fromJson(response.responseData['data']);
-      String token = response.responseData['token'];
+    if(isLogin){
 
-      AuthController.saveUserData(model, token);
-      
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainNavScreen()));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('login success.....!')));
     }else{
